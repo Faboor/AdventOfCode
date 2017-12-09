@@ -5,7 +5,7 @@
 # so the digit after the last digit is the first digit in
 # the list.
 def sum_if_matches_forward(a, jump=1):
-  return sum(map(lambda x: int(x[0]), filter(lambda x: x[0] == x[1], zip(a, a[jump:] + a[:jump])))) 
+    return sum(map(lambda x: int(x[0]), filter(lambda x: x[0] == x[1], zip(a, a[jump:] + a[:jump]))))
 
 
 # --- Part Two ---
@@ -19,5 +19,10 @@ def sum_if_matches_forward(a, jump=1):
 
 # Implemented by adding jump argument
 def part2(a):
-  return sum_if_matches_forward(a, int(len(a) / 2))
+    return sum_if_matches_forward(a, int(len(a) / 2))
+
+
+def get_input():
+    with open('inputs/Day01') as f:
+        return f.read()
 
