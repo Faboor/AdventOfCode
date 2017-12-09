@@ -24,5 +24,5 @@ def part2(a):
 
 def get_input():
     with open('inputs/Day01') as f:
-        return f.read()
+        return f.read()[:-1]
 
