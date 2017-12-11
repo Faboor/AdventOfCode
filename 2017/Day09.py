@@ -23,6 +23,7 @@
 # The goal is to find the total score for all groups
 def process(s):
   total = 0
+  garbage_count = 0
   stack = [0]
   garbage = False
   i = 0
@@ -39,9 +40,21 @@ def process(s):
         garbage = False
       elif s[i] == '!':
         i += 1
+      else:
+        garbage_count += 1
     i += 1
-  return total
+  return total, garbage_count
 
+
+# --- Part Two ---
+# Now, you're ready to remove the garbage. To prove you've
+# removed it, you need to count all of the characters within
+# the garbage. The leading and trailing < and > don't count,
+# nor do any canceled characters or the ! doing the
+# canceling. How many non-canceled characters are within
+# the garbage in your puzzle input?
+
+# Modified process to return garbage_count
 
 def get_input():
   with open('inputs/Day09') as f:
