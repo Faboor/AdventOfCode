@@ -25,4 +25,34 @@
 # range. In the example above, the trip severity is
 # 0*3 + 6*4 = 24.
 # What is the severity of your whole trip?
+def severity(scanners, time=0):
+  total_severity = 0
+  for depth in range(len(scanners)):
+    if hit(scanners[depth], time):
+      total_severity += depth * scanners[depth]
+    time += 1
+  return total_severity
 
+
+def hit(scan, time):
+  return scan and not time % (2 * scan - 2)
+
+
+# --- Part Two ---
+# What is the fewest number of picoseconds that you need to
+# delay the packet to pass through the firewall without
+# being caught?
+
+
+
+def get_input():
+  scanners = [0] * 100
+  with open('inputs/Day13') as f:
+    for line in f:
+      s = line.split(': ')
+      scanners[int(s[0])] = int(s[1])
+  return scanners
+
+
+if __name__ == '__main__':
+  print(severity(get_input()))
