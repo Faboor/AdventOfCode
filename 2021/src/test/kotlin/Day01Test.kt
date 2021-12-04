@@ -1,0 +1,21 @@
+import org.junit.jupiter.api.Test
+
+import org.junit.jupiter.api.Assertions.*
+import strikt.api.expectThat
+import strikt.assertions.isEqualTo
+import utils.Input
+
+internal class Day01Test {
+
+  private val input = Input("day01")
+
+  @Test
+  fun part1() {
+    expectThat(part1(input)).isEqualTo(7)
+  }
+
+  @Test
+  fun part2() {
+    expectThat(part2(input)).isEqualTo(5)
+  }
+}
