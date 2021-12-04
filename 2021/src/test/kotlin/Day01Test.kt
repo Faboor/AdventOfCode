@@ -11,11 +11,11 @@ internal class Day01Test {
 
   @Test
   fun part1() {
-    expectThat(part1(input)).isEqualTo(7)
+    expectThat(Day01.part1(input)).isEqualTo(7)
   }
 
   @Test
   fun part2() {
-    expectThat(part2(input)).isEqualTo(5)
+    expectThat(Day01.part2(input)).isEqualTo(5)
   }
 }
