@@ -12,6 +12,5 @@ class Input(day: String) {
   }
 
   fun lineSequence() =
-    javaClass.getResourceAsStream(filename)!!.bufferedReader().lineSequence();
-
+    javaClass.getResourceAsStream(filename)!!.bufferedReader().lineSequence()
 }
