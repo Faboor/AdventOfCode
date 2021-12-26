@@ -19,7 +19,7 @@ class Day06 private constructor() {
       val newOnDay = hashMapOf<Int, Long>().apply { putAll(initPairs) }
 
       input.lineSequence()
-        .first()
+        .single()
         .splitToSequence(',')
         .map { it.toInt() }
         .forEach { spawnsOnDay[it] = spawnsOnDay[it]!! + 1 }

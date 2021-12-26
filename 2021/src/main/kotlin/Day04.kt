@@ -39,7 +39,7 @@ class Day04 private constructor() {
     }
   }
 
-  class Board(serializedBoard: List<String>) {
+  private class Board(serializedBoard: List<String>) {
     private val board = Array(5) { IntArray(5) }
     private val numbers = HashMap<Int, Pair<Int, Int>>()
     var sumRemaining: Int = 0

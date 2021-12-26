@@ -5,19 +5,21 @@ class Day05 private constructor() {
     data class Dir(val dx: Int, val dy: Int) {
       operator fun plus(other: Dir) = Dir(dx + other.dx, dy + other.dy)
     }
+
     data class Point(val x: Int, val y: Int) {
       operator fun plus(dir: Dir) = Point(x + dir.dx, y + dir.dy)
     }
-    data class Line(val start: Point, val end: Point): Iterable<Point> {
+
+    data class Line(val start: Point, val end: Point) : Iterable<Point> {
       val dir = Dir(
         (end.x - start.x).coerceIn(-1, 1),
         (end.y - start.y).coerceIn(-1, 1),
       )
 
       override fun iterator() = object : Iterator<Point> {
-          var current = start
-          override fun hasNext() = current != end + dir
-          override fun next() = current.also { current += dir }
+        var current = start
+        override fun hasNext() = current != end + dir
+        override fun next() = current.also { current += dir }
       }
     }
 
@@ -27,20 +29,18 @@ class Day05 private constructor() {
       .flatMap { it.splitToSequence(" -> ") } // to point strings
       .flatMap { it.splitToSequence(',') } // to individual coors
       .map { it.toInt() }
-      .windowed(2, 2)
-      .map { Point(it[0], it[1]) }
-      .windowed(2, 2)
-      .map { Line(it[0], it[1]) }
+      .chunked(2) { Point(it[0], it[1]) }
+      .chunked(2) { Line(it[0], it[1]) }
 
     private operator fun Array<IntArray>.get(point: Point) =
       get(point.y)[point.x]
+
     private operator fun Array<IntArray>.set(point: Point, value: Int) {
       get(point.y)[point.x] = value
     }
 
     private fun countIntersections(linesSequence: Sequence<Line>): Int {
       val board = Array(SIZE) { IntArray(SIZE) }
-      var counter = 0
       return linesSequence
         .flatMap { it.iterator().asSequence() }
         .onEach { board[it] += 1 }

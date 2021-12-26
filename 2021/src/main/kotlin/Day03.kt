@@ -27,18 +27,16 @@ class Day03 private constructor() {
       initial: List<String>,
       keepMostCommon: Boolean
     ): Int {
-      var remaining = initial
+      val remaining = initial.toMutableList()
       var position = 0
       while (remaining.size > 1) {
-        val size = remaining.size
         var countOnes = 0
         remaining.forEach { if (it[position] == '1') countOnes++ }
         val toKeep =
-          if (countOnes >= size / 2.0)
+          if (countOnes >= remaining.size / 2.0)
               (if (keepMostCommon) '1' else '0')
           else (if (keepMostCommon) '0' else '1')
-
-        remaining = remaining.filter { it[position] == toKeep }
+        remaining.retainAll { it[position] == toKeep }
         position++
       }
       return remaining.single()
